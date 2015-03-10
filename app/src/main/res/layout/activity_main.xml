@@ -18,11 +18,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Which category describes you most"
         android:id="@+id/Question1"
-        android:textSize="25dp"
-        android:layout_marginTop="69dp"
+        android:textSize="25sp"
         android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/checkBox1"
-        android:layout_alignStart="@+id/checkBox1" />
+        android:layout_toRightOf="@+id/prev"
+        android:layout_toEndOf="@+id/prev"
+        android:layout_marginTop="67dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -31,12 +31,10 @@
         android:id="@+id/checkBox1"
         android:checked="false"
         android:textSize="20dp"
-        android:layout_marginLeft="61dp"
-        android:layout_marginStart="61dp"
-        android:layout_below="@+id/Question1"
-        android:layout_toRightOf="@+id/textView20"
-        android:layout_toEndOf="@+id/textView20"
-        android:layout_marginTop="59dp" />
+        android:layout_marginTop="122dp"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/prev"
+        android:layout_toEndOf="@+id/prev" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -46,8 +44,7 @@
         android:checked="false"
         android:textSize="20dp"
         android:layout_below="@+id/checkBox1"
-        android:layout_alignLeft="@+id/checkBox1"
-        android:layout_alignStart="@+id/checkBox1" />
+        android:layout_toRightOf="@+id/prev" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -57,8 +54,7 @@
         android:checked="false"
         android:textSize="20dp"
         android:layout_below="@+id/checkBox2"
-        android:layout_alignLeft="@+id/checkBox2"
-        android:layout_alignStart="@+id/checkBox2" />
+        android:layout_toRightOf="@+id/prev" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -68,43 +64,35 @@
         android:checked="false"
         android:textSize="20dp"
         android:layout_below="@+id/checkBox3"
-        android:layout_alignLeft="@+id/checkBox3"
-        android:layout_alignStart="@+id/checkBox3" />
+        android:layout_toRightOf="@+id/prev" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PREV"
+        android:id="@+id/prev"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView20"
+        android:layout_toEndOf="@+id/textView20"
+        android:onClick="buttonOnClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:id="@+id/next"
+        android:enabled="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:background="@drawable/PointLogo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView20"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textView20"
-        android:layout_toEndOf="@+id/textView20" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:enabled="false" />
+        android:layout_toEndOf="@+id/textView20"
+        android:background="@drawable/pointlogo" />
 
 </RelativeLayout>
