@@ -4,5 +4,9 @@
     <string name="app_name">PointProject</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_management">ManagementActivity</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_manage_menu">ManageMenu</string>
+    <string name="title_activity_question_edit">QuestionEdit</string>
 
 </resources>
