@@ -45,6 +45,13 @@ public class ManageMenu extends ActionBarActivity {
         }
     }
 
+    public void resultsButtonOnClick(View v) {
+        Button button = (Button) v;
+        if (button.getId() == R.id.viewSurveyButton) {
+            startActivity(new Intent(getApplicationContext(), Results.class));
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

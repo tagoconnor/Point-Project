@@ -6,38 +6,28 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import java.lang.String;
 
 
-public class Thanks extends ActionBarActivity {
+public class Results extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thanks);
+        setContentView(R.layout.activity_results);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_thanks, menu);
+        getMenuInflater().inflate(R.menu.menu_management, menu);
+        setContentView(R.layout.activity_results);
         return true;
-    }
-
-    public void finishButtonOnClick(View v) {
-        Button button = (Button) v;
-        if (button.getId() == R.id.finishButton) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
-    }
-
-    public void ManagebuttonOnClick(View v) {
-        ImageButton button = (ImageButton) v;
-        if (button.getId() == R.id.imageButton6){
-            startActivity(new Intent(getApplicationContext(), Login.class));
-        }
     }
 
     @Override

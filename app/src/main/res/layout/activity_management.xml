@@ -63,6 +63,7 @@
         android:id="@+id/textView5"
         android:layout_alignTop="@+id/textView"
         android:layout_alignRight="@+id/Newbutton"
-        android:layout_alignEnd="@+id/Newbutton" />
+        android:layout_alignEnd="@+id/Newbutton"
+        android:visibility="invisible" />
 
 </RelativeLayout>
