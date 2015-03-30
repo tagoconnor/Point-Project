@@ -28,10 +28,10 @@ public class ManagementActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_management, menu);
         setContentView(R.layout.activity_management);
-        TextView testText = (TextView) findViewById(R.id.textView5);
+       // TextView testText = (TextView) findViewById(R.id.textView5);
         final Question questionSet = (Question) getApplication();
-        String s = questionSet.answerList[0];
-        testText.setText(s);
+
+        //testText.setText(s);
         int counter = 0;
         String[] QuestionsList = new String[(questionSet.QuestionCount)];
         while (counter < questionSet.QuestionCount) {
@@ -59,8 +59,8 @@ public class ManagementActivity extends ActionBarActivity {
                 // We know the View is a TextView so we can cast it
                 TextView clickedView = (TextView) view;
 
-                TextView testText = (TextView) findViewById(R.id.textView5);
-                testText.setText("The posistion is ["+position+"]");
+                //TextView testText = (TextView) findViewById(R.id.textView5);
+               //  testText.setText("The posistion is ["+position+"]");
                 questionSet.QuestionID = position;
                 startActivity(new Intent(getApplicationContext(), QuestionEdit.class));
             }

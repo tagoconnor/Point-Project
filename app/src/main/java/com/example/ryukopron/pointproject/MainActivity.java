@@ -1,5 +1,6 @@
 package com.example.ryukopron.pointproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,7 +18,10 @@ public class MainActivity extends ActionBarActivity {
 
     int index = 0;
     int answerIndex = 0;
-    public String[] questionsTest = {"4","Which describes you most?","true","4","Student 18-21","3","Student 21+","3","Faculty","3","Non-Student","3","How was your visit?","true","2","Excellent","3","Good","3","How many times have you visited The Point?","true","4", "First time","3", "2-4","3", "5-10","3", "11+","3", "What brings you in today?","true","3", "Beer","3", "Food","3", "Entertainment","3",};
+    public String[] questionsTest = {"4","Which describes you most?","true","4","Student 18-21","3","Student 21+","3","Faculty","3","Non-Student","3",
+            "How was your visit?","true","2","Excellent","3","Good","3",
+            "How many times have you visited The Point?","true","4", "First time","3", "2-4","3", "5-10","3", "11+","3",
+            "What brings you in today?","true","3", "Beer","3", "Food","3", "Entertainment","3",};
 
 
 
@@ -26,6 +30,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        DatabaseQuerys DB = new DatabaseQuerys(this);
+        DB.INSERT(DB, 1, "Which describes you most?",true /*, 4*/,"Student 18-21",3,"Student 21+",3,"Faculty",3,"Non-Student",3);
+        DB.INSERT(DB, 2, "How was your visit?",true /*, 2*/,"Excellent",3,"Good",3, null, null, null, null);
+        DB.INSERT(DB, 3, "How many times have you visited The Point?",true /*, 4*/, "First time",3, "2-4",3, "5-10",3, "11+",3);
+        DB.INSERT(DB, 4, "What brings you in today?",true /*, "3"*/, "Beer",3, "Food",3, "Entertainment", 3, null, null);
 
         //Read file should be here.
         //You could read into questionsTest array above (need to modify params a little) and then output to Question Class

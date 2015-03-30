@@ -1,5 +1,6 @@
 package com.example.ryukopron.pointproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,9 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import java.lang.String;
+import android.app.AlertDialog;
 
 
 public class QuestionEdit extends ActionBarActivity {
@@ -50,6 +53,23 @@ public class QuestionEdit extends ActionBarActivity {
     public void savebuttonOnClick(View v) {
         Button button = (Button) v;
         if (button.getId() == R.id.saveButton){
+            final EditText input = new EditText(this);
+             new AlertDialog.Builder(this)
+                    .setTitle("Update Status")
+                    .setMessage("Sure")
+                    .setView(input)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //editable = input.getText();
+                            // deal with the editable
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Do nothing.
+                        }
+                    }).show();
 
            //save data to text file or database here.
            //If you do overwrite the existing textfile:
