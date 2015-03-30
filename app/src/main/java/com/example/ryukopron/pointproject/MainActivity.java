@@ -162,6 +162,9 @@ public class MainActivity extends ActionBarActivity {
             Quest.setText(((Question) this.getApplication()).Questions[index]);
             unCheck();
         }
+        else {
+            startActivity(new Intent(getApplicationContext(), Thanks.class));
+        }
 
     }
 

@@ -31,9 +31,9 @@ public class QuestionEdit extends ActionBarActivity {
             answerText1.setText(questionSet.answerList[answerIndex]);
             answerText2.setText(questionSet.answerList[(answerIndex + 1)]);
             if (questionSet.answerCount[questionSet.QuestionID]>=3){
-                answerText1.setText(questionSet.answerList[(answerIndex+2)]);}
+                answerText3.setText(questionSet.answerList[(answerIndex+2)]);}
             if (questionSet.answerCount[questionSet.QuestionID]>=4){
-                answerText1.setText(questionSet.answerList[(answerIndex+3)]);}
+                answerText4.setText(questionSet.answerList[(answerIndex+3)]);}
         }
     }
 
