@@ -10,45 +10,33 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 
-public class ManageMenu extends ActionBarActivity {
+public class Thanks extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_menu);
+        setContentView(R.layout.activity_thanks);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_manage_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_thanks, menu);
         return true;
     }
 
-
-    //  Only the Manage Questions button works at this time!
-    //  Will add other functionality as time allows.
-
-
-    public void ManagebuttonOnClick(View v) {
+    public void finishButtonOnClick(View v) {
         Button button = (Button) v;
-        if (button.getId() == R.id.manageQuestionsButton){
-            startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
-        }
-    }
-
-    public void exitbuttonOnClick(View v) {
-        ImageButton button = (ImageButton) v;
-        if (button.getId() == R.id.imageButton4) {
+        if (button.getId() == R.id.finishButton) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
 
-    public void resultsButtonOnClick(View v) {
-        Button button = (Button) v;
-        if (button.getId() == R.id.viewSurveyButton) {
-            startActivity(new Intent(getApplicationContext(), Results.class));
+    public void ManagebuttonOnClick(View v) {
+        ImageButton button = (ImageButton) v;
+        if (button.getId() == R.id.imageButton6){
+            startActivity(new Intent(getApplicationContext(), Login.class));
         }
     }
 

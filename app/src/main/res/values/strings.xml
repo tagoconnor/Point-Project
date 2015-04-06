@@ -8,5 +8,7 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_manage_menu">ManageMenu</string>
     <string name="title_activity_question_edit">QuestionEdit</string>
+    <string name="title_activity_thanks">Thanks</string>
+    <string name="title_activity_results">Results</string>
 
 </resources>

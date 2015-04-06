@@ -92,4 +92,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="*Saving changes will remove all results for this question"
+        android:id="@+id/textView7"
+        android:textColor="#ffc9001e"
+        android:layout_alignBottom="@+id/saveButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

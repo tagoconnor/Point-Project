@@ -2,6 +2,7 @@ package com.example.ryukopron.pointproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -53,6 +54,18 @@ public class DatabaseQuerys extends SQLiteOpenHelper{
         cv.put(QandA.TableInfo.Result4, Result4);
         SQ.insert(QandA.TableInfo.TABLE_NAME, null, cv);
         Log.d("Database operations", "Row Inserted");
+
+
+    }
+
+    public Cursor getInformation(DatabaseQuerys dop)
+    {
+        SQLiteDatabase SQ = dop.getReadableDatabase();
+        String[] columns = {QandA.TableInfo.QID,QandA.TableInfo.Question, QandA.TableInfo.UseQ, QandA.TableInfo.Answer1,
+                QandA.TableInfo.Result1, QandA.TableInfo.Answer2, QandA.TableInfo.Result2, QandA.TableInfo.Answer3,
+                QandA.TableInfo.Answer4, QandA.TableInfo.Result4};
+        Cursor CR = SQ.query(QandA.TableInfo.TABLE_NAME,columns, null, null, null, null, null);
+        return CR;
 
 
     }
