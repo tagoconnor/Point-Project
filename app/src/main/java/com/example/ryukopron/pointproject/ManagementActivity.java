@@ -1,6 +1,7 @@
 package com.example.ryukopron.pointproject;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 
 
 public class ManagementActivity extends ActionBarActivity {
+
+    DatabaseQuerys DB;
+    long NumRows = DB.COUNT(DB);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +36,14 @@ public class ManagementActivity extends ActionBarActivity {
         final Question questionSet = (Question) getApplication();
 
         //testText.setText(s);
-        int counter = 0;
-        String[] QuestionsList = new String[(questionSet.QuestionCount)];
-        while (counter < questionSet.QuestionCount) {
-            QuestionsList[counter] = questionSet.Questions[counter];
+        int counter = 1;
+
+        String[] QuestionsList = new String[(int) NumRows];
+        while (counter <= NumRows/*questionSet.QuestionCount*/) {
+            Cursor CR = DB.getInformation(DB, counter);
+            CR.moveToFirst(); //QID
+            CR.moveToNext(); //Question
+            QuestionsList[counter] = CR.getString(0);
             counter = (counter + 1);
         }
         // This QuestionsList string fills the text box by loading Questions from our array.
@@ -62,6 +70,7 @@ public class ManagementActivity extends ActionBarActivity {
                 //TextView testText = (TextView) findViewById(R.id.textView5);
                //  testText.setText("The posistion is ["+position+"]");
                 questionSet.QuestionID = position;
+
                 startActivity(new Intent(getApplicationContext(), QuestionEdit.class));
             }
         });

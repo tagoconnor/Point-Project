@@ -8,7 +8,7 @@ import android.app.Application;
 
 
 public class Question extends Application {
-    public Integer QuestionID = -1;
+    public Integer QuestionID = 0;
     public Integer QuestionCount = 1;
     public String[] Questions = new String[100];
     public Integer[] answerCount = new Integer[100];
