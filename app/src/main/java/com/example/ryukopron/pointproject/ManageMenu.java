@@ -52,6 +52,13 @@ public class ManageMenu extends ActionBarActivity {
         }
     }
 
+    public void editLoginButtonOnClick(View v) {
+        Button button = (Button) v;
+        if (button.getId() == R.id.usernameButton) {
+            startActivity(new Intent(getApplicationContext(), EditUsernamePassword.class));
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

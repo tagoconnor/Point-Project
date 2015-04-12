@@ -16,10 +16,13 @@ import java.lang.String;
 
 public class Login extends ActionBarActivity {
 
+    Question questionSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        questionSet = (Question) getApplication();
     }
 
 
@@ -46,11 +49,11 @@ public class Login extends ActionBarActivity {
             String usern = username.getText().toString();
             String passn = password.getText().toString();
 
-            // Here is the password! admin admin
+            // Here is the username and password! admin admin
             // At some point we will have to add this to the database/textfile so it can be edited
 
-            if (usern.equals("admin")){
-                if (passn.equals("admin")){
+            if (usern.equals(questionSet.userName)){
+                if (passn.equals(questionSet.password)){
                      startActivity(new Intent(getApplicationContext(), ManageMenu.class));
                 }
             }

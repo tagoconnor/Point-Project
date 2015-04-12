@@ -108,4 +108,25 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/testbutton1"
+        android:layout_below="@+id/checkBox4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:onClick="testbuttonOnClick"
+        android:visibility="invisible" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test Button"
+        android:id="@+id/testbutton2"
+        android:layout_above="@+id/next"
+        android:layout_centerHorizontal="true"
+        android:onClick="testreadOnClick"
+        android:visibility="invisible" />
+
 </RelativeLayout>

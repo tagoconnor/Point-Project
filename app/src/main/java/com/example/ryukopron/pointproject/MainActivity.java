@@ -2,8 +2,6 @@ package com.example.ryukopron.pointproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,93 +11,86 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.database.Cursor;
-import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.String;
+import java.util.Arrays;
+
 
 public class MainActivity extends ActionBarActivity {
-
-
-    int index = 0;
+    BufferedReader inputReader;
+    StringBuffer stringBuffer;
+    Question questionSet;
+    int index = 1;
     int answerIndex = 0;
-//    public String[] questionsTest = {"4","Which describes you most?","true","4","Student 18-21","3","Student 21+","3","Faculty","3","Non-Student","3",
-  //          "How was your visit?","true","2","Excellent","3","Good","3",
-//            "How many times have you visited The Point?","true","4", "First time","3", "2-4","3", "5-10","3", "11+","3",
-//            "What brings you in today?","true","3", "Beer","3", "Food","3", "Entertainment","3",};
-
-
-
-
-
-
-
-
-
-
-    int i=1;
-    DatabaseQuerys DB = new DatabaseQuerys(this);
-    long NumRows = DB.COUNT(DB);
+    int checks[] = new int[100];
+    public String[] questionsTest = {"4","Which describes you most?","true","4","Student 18-21","3","Student 21+","3","Faculty","3","Non-Student","3",
+            "How was your visit?","true","2","Excellent","3","Good","3","How many times have you visited The Point?","true","4", "First time","3",
+            "2-4","3", "5-10","3", "11+","3", "What brings you in today?","true","3", "Beer","3", "Food","3", "Entertainment","3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("Reached");
-        NumRows = DB.COUNT(DB);
         setContentView(R.layout.activity_main);
+        Arrays.fill(checks, -1);
 
-        if (NumRows > 0){
-            Cursor CR = DB.getInformation(DB, i);
-            CR.moveToFirst();
-            TextView Quest = (TextView) findViewById(R.id.Question1);
-            Quest.setText(CR.getString(1));
-            TextView checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-            checkBox1.setText(CR.getString(2));
-            TextView checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-            checkBox2.setText(CR.getString(4));
-            if(CR.getString(6)!= "null"){
-                TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
-                checkBox3.setVisibility(View.VISIBLE);
-                checkBox3.setText(CR.getString(6));
+        try{
+            inputReader = new BufferedReader(new InputStreamReader(openFileInput("testOutputFile")));
+            stringBuffer = new StringBuffer();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Read file should be here.
+        //You could read into questionsTest array above (need to modify params a little) and then output to Question Class
+        //The code for adding it is already done just below this comment block.
+        //Or you could read directly into the Question class. Whichever is easier for you.
+        //FYI, Question Class is a public class that you can access from any form.
+        //This makes it so we don't need to reread data for the management sections.
+
+        //Survey functions and auto adjusts to show the proper number of answers for each question
+        //It doesn't increment the results yet since there is no output to save to.
+        //Could save the id of whichever checkbox is checked to an array.
+        //I think that saving after the last question would be nice.
+        //Just output all data to same textfile and increment the chosen values.
+
+        //Side note:
+        //We could do a lot more questions. Any thoughts?
+
+        questionSet = (Question)getApplication();
+        /*questionSet.QuestionCount = Integer.parseInt(questionsTest[0]);
+        Integer count = 0;
+        Integer tempCount = 0;
+        Integer questionPosition = 0;
+        Integer answerCount = 0;
+        Integer arrayPosition = 1;
+        while (count < Integer.parseInt(questionsTest[0])){
+            questionSet.Questions[count]=questionsTest[arrayPosition];
+            questionSet.status[count]=Boolean.parseBoolean(questionsTest[arrayPosition+1]);
+            answerCount = Integer.parseInt(questionsTest[(arrayPosition+2)]);
+            questionSet.answerCount[count]=answerCount;
+            while (tempCount < answerCount){
+                questionSet.answerList[(tempCount+questionPosition)]=questionsTest[(arrayPosition+3+(2*tempCount))];
+                questionSet.results[(tempCount+questionPosition)]=Integer.parseInt(questionsTest[(arrayPosition+4+(2*tempCount))]);
+                tempCount = (tempCount +1);
             }
-            if(CR.getString(8)!= "null"){
-                TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
-                checkBox4.setVisibility(View.VISIBLE);
-                checkBox4.setText(CR.getString(9));
-            }
-
-
-
-         }
-
-
-//        Question questionSet = (Question)getApplication();
-//        questionSet.QuestionCount = Integer.parseInt(questionsTest[0]);
-//        Integer count = 0;
-//        Integer tempCount = 0;
-//        Integer questionPosition = 0;
-//        Integer answerCount = 0;
-//        Integer arrayPosition = 1;
-//        while (count < Integer.parseInt(questionsTest[0])){
-//            questionSet.Questions[count]=questionsTest[arrayPosition];
-//            questionSet.status[count]=Boolean.parseBoolean(questionsTest[arrayPosition+1]);
-//            answerCount = Integer.parseInt(questionsTest[(arrayPosition+2)]);
-//            questionSet.answerCount[count]=answerCount;
-//            while (tempCount < answerCount){
-//                questionSet.answerList[(tempCount+questionPosition)]=questionsTest[(arrayPosition+3+(2*tempCount))];
-//                questionSet.results[(tempCount+questionPosition)]=Integer.parseInt(questionsTest[(arrayPosition+4+(2*tempCount))]);
-//                tempCount = (tempCount +1);
-//            }
-//            questionPosition = (questionPosition + answerCount);
-//            tempCount=0;
-//            arrayPosition=(arrayPosition + 3 + (2*answerCount));
-//            count = (count + 1);
-//       }
-  }
+            questionPosition = (questionPosition + answerCount);
+            tempCount=0;
+            arrayPosition=(arrayPosition + 3 + (2*answerCount));
+            count = (count + 1);
+       }*/
+        questionSet.readData();
+        prevQ();
+    }
 
     public void oncheckboxClick(View v) {
             boolean checked = ((CheckBox) v).isChecked();
             if (v.getId() == R.id.checkBox1){
+                checks[index]=0;
                 CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
                 checkBox2.setChecked(false);
                 CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
@@ -108,6 +99,7 @@ public class MainActivity extends ActionBarActivity {
                 checkBox4.setChecked(false);
             }
         if (v.getId() == R.id.checkBox2){
+            checks[index]=1;
             CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
             checkBox1.setChecked(false);
             CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
@@ -116,6 +108,7 @@ public class MainActivity extends ActionBarActivity {
             checkBox4.setChecked(false);
         }
         if (v.getId() == R.id.checkBox3){
+            checks[index]=2;
             CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
             checkBox2.setChecked(false);
             CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
@@ -124,6 +117,7 @@ public class MainActivity extends ActionBarActivity {
             checkBox4.setChecked(false);
         }
         if (v.getId() == R.id.checkBox4){
+            checks[index]=3;
             CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
             checkBox2.setChecked(false);
             CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
@@ -149,6 +143,53 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+
+    public void testbuttonOnClick(View v) {
+        Button button = (Button) v;
+        int count = 0;
+        String inputString;
+        if (button.getId() == R.id.testbutton1) {
+           try {
+                inputString = inputReader.readLine();
+                if (inputString == null){
+                    button.setText("FUUUUUUU---!");
+                }
+                else {
+                    button.setText(inputString);
+                }
+            }
+            catch (Exception e) {
+                button.setText("FUUUUUU---!");
+                e.printStackTrace();
+            }
+
+
+/*
+            try {
+                FileOutputStream fos = openFileOutput("datafile", Context.MODE_PRIVATE);
+                fos.write("admin\nadmin".getBytes());
+
+                while (count < questionsTest.length) {
+                    fos.write("\n".getBytes());
+                    fos.write(questionsTest[count].getBytes());
+                    count = (count + 1);
+                }
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+        }
+    }
+
+    public void testreadOnClick(View v) {
+        Button button = (Button) v;
+        if (button.getId() == R.id.testbutton2)
+        {
+            questionSet.readData();
+            button.setText(questionSet.QuestionCount.toString());
+        }
+    }
+
     //this is for the little cog button. Take you to the login screen for the management menu
     //On any other page, if this is clicked it will take the user back to the survey start page.
 
@@ -171,55 +212,30 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void nextQ() {
-        if  (i<NumRows/*index < (((Question) this.getApplication()).QuestionCount)-1*/) {
-        //    index = index + 1;
-        //    answerIndex = getAnswerIndex(index);
-            i+=1;
-            Cursor CR = DB.getInformation(DB, i);
-            CR.moveToFirst(); //QUID
-            CR.moveToNext(); // Question2
-            TextView Quest = (TextView) findViewById(R.id.Question1);
-            Quest.setText(CR.getString(0));
-            CR.moveToNext(); //Answer1
+        if  (index < (((Question) this.getApplication()).QuestionCount)-1) {
+            index = index + 1;
+            answerIndex = getAnswerIndex(index);
             TextView checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-            checkBox1.setText(CR.getString(0));
-            CR.moveToNext(); //Result1
-            CR.moveToNext(); //Answer2
+            checkBox1.setText(((Question) this.getApplication()).answerList[answerIndex]);
             TextView checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-            checkBox2.setText(CR.getString(0));
-            CR.moveToNext(); //Result2
-            CR.moveToNext(); //Answer3
-            if(CR.getString(0)!= "null"){
-                TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+            checkBox2.setText(((Question) this.getApplication()).answerList[(answerIndex+1)]);
+            TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+            if (((Question) this.getApplication()).answerCount[index]>=3){
                 checkBox3.setVisibility(View.VISIBLE);
-                checkBox3.setText(CR.getString(0));
-            }
-            CR.moveToNext(); //Result3
-            CR.moveToNext(); //Answer4
-            if(CR.getString(0)!= "null"){
-                TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                checkBox3.setText(((Question) this.getApplication()).answerList[(answerIndex + 2)]);}
+            else{checkBox3.setVisibility(View.INVISIBLE);}
+            TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+            if (((Question) this.getApplication()).answerCount[index]>=4){
                 checkBox4.setVisibility(View.VISIBLE);
-                checkBox4.setText(CR.getString(0));
-            }
-     //       TextView checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-    //        checkBox1.setText(((Question) this.getApplication()).answerList[answerIndex]);
-     //       TextView checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-      //      checkBox2.setText(((Question) this.getApplication()).answerList[(answerIndex+1)]);
-      //      TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
-     //       if (((Question) this.getApplication()).answerCount[index]>=3){
-     //           checkBox3.setVisibility(View.VISIBLE);
-     //           checkBox3.setText(((Question) this.getApplication()).answerList[(answerIndex + 2)]);}
-           //else{checkBox3.setVisibility(View.INVISIBLE);}
-          //  TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
-        //    if (((Question) this.getApplication()).answerCount[index]>=4){
-        //        checkBox4.setVisibility(View.VISIBLE);
-        //       checkBox4.setText(((Question) this.getApplication()).answerList[(answerIndex + 3)]);}
-            //else {checkBox4.setVisibility(View.INVISIBLE);}
-           // TextView Quest = (TextView) findViewById(R.id.Question1);
-           // Quest.setText(((Question) this.getApplication()).Questions[index]);
+                checkBox4.setText(((Question) this.getApplication()).answerList[(answerIndex + 3)]);}
+            else {checkBox4.setVisibility(View.INVISIBLE);}
+            TextView Quest = (TextView) findViewById(R.id.Question1);
+            Quest.setText(((Question) this.getApplication()).Questions[index]);
             unCheck();
         }
         else {
+            questionSet.saveSurveyData(checks);
+            Arrays.fill(checks, -1);
             startActivity(new Intent(getApplicationContext(), Thanks.class));
         }
 
@@ -237,56 +253,26 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void prevQ(){
-        if  (i>1/*index < (((Question) this.getApplication()).QuestionCount)-1*/) {
-        //    index = index - 1;
-        //    answerIndex = getAnswerIndex(index);
-            i-=1;
-            Cursor CR = DB.getInformation(DB, i);
-            CR.moveToFirst(); //QUID
-            CR.moveToNext(); // Question2
-            TextView Quest = (TextView) findViewById(R.id.Question1);
-            Quest.setText(CR.getString(0));
-            CR.moveToNext(); //Answer1
+        if (index>0) {
+            index = index - 1;
+            answerIndex = getAnswerIndex(index);
             TextView checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-            checkBox1.setText(CR.getString(0));
-            CR.moveToNext(); //Result1
-            CR.moveToNext(); //Answer2
+            checkBox1.setText(((Question) this.getApplication()).answerList[answerIndex]);
             TextView checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-            checkBox2.setText(CR.getString(0));
-            CR.moveToNext(); //Result2
-            CR.moveToNext(); //Answer3
-            if(CR.getString(0)!= "null"){
-                TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+            checkBox2.setText(((Question) this.getApplication()).answerList[(answerIndex+1)]);
+            TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+            if (((Question) this.getApplication()).answerCount[index]>=3){
                 checkBox3.setVisibility(View.VISIBLE);
-                checkBox3.setText(CR.getString(0));
-            }
-            CR.moveToNext(); //Result3
-            CR.moveToNext(); //Answer4
-            if(CR.getString(0)!= "null"){
-                TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+                checkBox3.setText(((Question) this.getApplication()).answerList[(answerIndex + 2)]);}
+            else{checkBox3.setVisibility(View.INVISIBLE);}
+            TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+            if (((Question) this.getApplication()).answerCount[index]>=4){
                 checkBox4.setVisibility(View.VISIBLE);
-                checkBox4.setText(CR.getString(0));
-            }
-    //    if (index>0) {
-    //        index = index - 1;
-    //        answerIndex = getAnswerIndex(index);
-    //        TextView checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-    //        checkBox1.setText(((Question) this.getApplication()).answerList[answerIndex]);
-    //        TextView checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-    //        checkBox2.setText(((Question) this.getApplication()).answerList[(answerIndex+1)]);
-    //        TextView checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
-    //        if (((Question) this.getApplication()).answerCount[index]>=3){
-    //            checkBox3.setVisibility(View.VISIBLE);
-    //            checkBox3.setText(((Question) this.getApplication()).answerList[(answerIndex + 2)]);}
-    //        else{checkBox3.setVisibility(View.INVISIBLE);}
-    //        TextView checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
-    //        if (((Question) this.getApplication()).answerCount[index]>=4){
-    //            checkBox4.setVisibility(View.VISIBLE);
-    //            checkBox4.setText(((Question) this.getApplication()).answerList[(answerIndex + 3)]);}
-    //        else {checkBox4.setVisibility(View.INVISIBLE);}
-    //        TextView Quest = (TextView) findViewById(R.id.Question1);
-    //        Quest.setText(((Question) this.getApplication()).Questions[index]);
-     //       unCheck();
+                checkBox4.setText(((Question) this.getApplication()).answerList[(answerIndex + 3)]);}
+            else {checkBox4.setVisibility(View.INVISIBLE);}
+            TextView Quest = (TextView) findViewById(R.id.Question1);
+            Quest.setText(((Question) this.getApplication()).Questions[index]);
+            unCheck();
         }
     }
 

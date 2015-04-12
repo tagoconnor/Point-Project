@@ -87,7 +87,7 @@
         android:text="Save"
         android:id="@+id/saveButton"
         android:layout_marginTop="48dp"
-        android:onClick="submitButtonOnClick"
+        android:onClick="savebuttonOnClick"
         android:layout_below="@+id/answerTextbox4"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -102,5 +102,16 @@
         android:layout_alignBottom="@+id/saveButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Please provide a question and the first two answers."
+        android:id="@+id/errorText2"
+        android:layout_below="@+id/questionTextbox"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textColor="#ffff0008" />
 
 </RelativeLayout>

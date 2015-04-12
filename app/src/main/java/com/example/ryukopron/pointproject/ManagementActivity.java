@@ -1,7 +1,6 @@
 package com.example.ryukopron.pointproject;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,8 +16,7 @@ import android.widget.TextView;
 
 public class ManagementActivity extends ActionBarActivity {
 
-    DatabaseQuerys DB;
-    long NumRows = DB.COUNT(DB);
+    Question questionSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +29,16 @@ public class ManagementActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_management, menu);
+        questionSet = (Question) getApplication();
         setContentView(R.layout.activity_management);
-       // TextView testText = (TextView) findViewById(R.id.textView5);
+        TextView testText = (TextView) findViewById(R.id.textView5);
         final Question questionSet = (Question) getApplication();
-
-        //testText.setText(s);
-        int counter = 1;
-
-        String[] QuestionsList = new String[(int) NumRows];
-        while (counter <= NumRows/*questionSet.QuestionCount*/) {
-            Cursor CR = DB.getInformation(DB, counter);
-            CR.moveToFirst(); //QID
-            CR.moveToNext(); //Question
-            QuestionsList[counter] = CR.getString(0);
+        String s = questionSet.answerList[0];
+        testText.setText(s);
+        int counter = 0;
+        String[] QuestionsList = new String[(questionSet.QuestionCount)];
+        while (counter < questionSet.QuestionCount) {
+            QuestionsList[counter] = questionSet.Questions[counter];
             counter = (counter + 1);
         }
         // This QuestionsList string fills the text box by loading Questions from our array.
@@ -67,10 +62,9 @@ public class ManagementActivity extends ActionBarActivity {
                 // We know the View is a TextView so we can cast it
                 TextView clickedView = (TextView) view;
 
-                //TextView testText = (TextView) findViewById(R.id.textView5);
-               //  testText.setText("The posistion is ["+position+"]");
+                TextView testText = (TextView) findViewById(R.id.textView5);
+                testText.setText("The posistion is ["+position+"]");
                 questionSet.QuestionID = position;
-
                 startActivity(new Intent(getApplicationContext(), QuestionEdit.class));
             }
         });
@@ -104,7 +98,11 @@ public class ManagementActivity extends ActionBarActivity {
     public void createNewButtonOnClick(View v) {
         Button button = (Button) v;
         if (button.getId() == R.id.Newbutton){
-            startActivity(new Intent(getApplicationContext(), QuestionEdit.class));
+            if (questionSet.QuestionCount < 100){
+                questionSet.QuestionID = -1;
+                startActivity(new Intent(getApplicationContext(), QuestionEdit.class));
+            }
+
         }
     }
 
