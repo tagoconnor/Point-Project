@@ -116,6 +116,15 @@ public class Question extends Application {
         }
     }
 
+    public int resultCount(){
+        int result = (2*QuestionCount);
+        int tempCount;
+        for (tempCount = 0; tempCount < QuestionCount; tempCount ++){
+            result = (result + ((answerCount[tempCount])));
+        }
+        return result;
+    }
+
     public void saveSurveyData(int[] votes){
         int count = 0;
         int tempCount = 0;

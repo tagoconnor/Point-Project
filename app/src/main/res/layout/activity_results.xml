@@ -18,7 +18,7 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/imageButton7"
+        android:id="@+id/exitsButton"
         android:background="@drawable/gear"
         android:onClick="exitbuttonOnClick"
         android:layout_alignParentBottom="true"
@@ -27,12 +27,14 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:id="@+id/listView2"
+        android:id="@+id/resultsList"
         android:smoothScrollbar="true"
         android:choiceMode="singleChoice"
         android:clickable="false"
         android:layout_below="@+id/imageView7"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
-        android:layout_above="@+id/imageButton7" />
+        android:layout_marginTop="40dp"
+        android:layout_above="@+id/exitsButton"
+        android:layout_marginBottom="40dp" />
+
 </RelativeLayout>

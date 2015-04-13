@@ -55,23 +55,23 @@
         android:layout_height="wrap_content"
         android:text="Manage Members"
         android:id="@+id/manageMembersButton"
-        android:layout_below="@+id/manageQuestionsButton"
+        android:layout_below="@+id/logoButton"
+        android:layout_alignRight="@+id/logoButton"
+        android:layout_alignEnd="@+id/logoButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Username and Password"
         android:id="@+id/usernameButton"
-        android:layout_below="@+id/manageMembersButton"
+        android:onClick="editLoginButtonOnClick"
+        android:layout_below="@+id/manageQuestionsButton"
+        android:layout_alignRight="@+id/manageQuestionsButton"
+        android:layout_alignEnd="@+id/manageQuestionsButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="editLoginButtonOnClick" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"

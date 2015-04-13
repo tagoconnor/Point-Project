@@ -58,10 +58,7 @@ public class ManagementActivity extends ActionBarActivity {
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parentAdapter, View view, int position,
                                     long id) {
-
-                // We know the View is a TextView so we can cast it
                 TextView clickedView = (TextView) view;
-
                 TextView testText = (TextView) findViewById(R.id.textView5);
                 testText.setText("The posistion is ["+position+"]");
                 questionSet.QuestionID = position;
@@ -82,12 +79,7 @@ public class ManagementActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

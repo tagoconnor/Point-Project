@@ -100,32 +100,9 @@ public class QuestionEdit extends ActionBarActivity {
 
                      questionSet.QuestionCount = (questionSet.QuestionCount + 1);
                      questionSet.saveSurveyData(nullarray);
-                     /*fos.write("\ntrue\n".getBytes());
-                     fos.write(Integer.toString(qCount).getBytes());
-                     fos.write("\n0\n".getBytes());
-                     fos.write(answer1.getText().toString().getBytes());
-                     fos.write("\n0\n".getBytes());
-                     fos.write(answer2.getText().toString().getBytes());
-                     fos.write("\n0\n".getBytes());
-
-                     if (answer3.getText().toString().length() != 0) {
-                         fos.write(answer3.getText().toString().getBytes());
-                         fos.write("\n0\n".getBytes());
-                         if (answer4.getText().toString().length() != 0){
-                             fos.write(answer4.getText().toString().getBytes());
-                             fos.write("\n0\n".getBytes());
-                         }
-                     }
-                     fos.close();
-                     button.setText("Completed Append");
-                     questionSet.readData(1);
-                     button.setText("Completed Read");
                      TextView errorText = (TextView) findViewById(R.id.errorText2);
+                     errorText.setText("Question Saved!");
                      errorText.setVisibility(View.VISIBLE);
-                     errorText.setText(questionSet.Questions[4]);
-                     questionSet.saveSurveyData(nullarray);
-                     button.setText("Question Added");
-                     */
                 }
                 else {
                     button.setText("Editing");
@@ -142,14 +119,9 @@ public class QuestionEdit extends ActionBarActivity {
                         }
                     }
                     questionSet.saveQuestionData(aCount, questionArray);
-
-                    /*try {
-                        FileOutputStream fos = openFileOutput("OutputFile", Context.MODE_APPEND);
-                        fos.write("".getBytes());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }*/
-
+                    TextView errorText = (TextView) findViewById(R.id.errorText2);
+                    errorText.setText("Question Saved!");
+                    errorText.setVisibility(View.VISIBLE);
                 }
             }
             else {
@@ -181,6 +153,10 @@ public class QuestionEdit extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_question_edit, menu);
+        if (questionSet.QuestionID < 0){
+            TextView errorText = (TextView) findViewById(R.id.textView7);
+            errorText.setVisibility(View.INVISIBLE);
+        }
         return true;
     }
 
